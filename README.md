@@ -21,7 +21,7 @@
 
 Below you can find a **learnable positional encoding method** that allows the model to adjust the positional representations during training based on the data. This is a dynamic positional encoding that in turn may be a good solution for the issues mentioned in question 1.
 
-
+## Positional Encoding
 ```python
 # Import libraries
 import torch
@@ -39,7 +39,7 @@ class PositionalEncoding(nn.Module):
         return x + self.positional_enconding # Add positional encoding to the input
 ```
 
-## ```__init__``` Method
+### ```__init__``` Method:
 ```self.positional_encoding``` is the learnable parameter. This tensor is initialized with random values using ```torch.randn```.
 Shape: ```(1, seq_len, d_model)```:
 
@@ -47,13 +47,15 @@ Shape: ```(1, seq_len, d_model)```:
 * seq_len: The length of the sequence. Each position in the sequence will have a unique encoding.
 * d_model: The dimensionality of the mode.
 
-## ```forward``` Method
+### ```forward``` Method:
 **Addition of Positional Encoding:**
 The operation ```x + self.positional_enconding``` adds the positional encoding to the input tensor x.
 
 **Broadcasting**: This means that the same positional encoding will be added to each sequence in the batch.
 
 **Purpose**: The PositionalEncoding class is designed to add positional information to the input. 
+
+## Self-Attention Model
 
 ```python
 class SelfAttentionModel(nn.Module):
@@ -73,14 +75,14 @@ class SelfAttentionModel(nn.Module):
         return output
 ```
 
-## ```SelfAttentionModel```
+### ```SelfAttentionModel```:
 **Self-Attention Layer**:
 Initializes a multi-head self-attention layer. This layer computes the attention scores between different positions in the sequence and combines information from multiple attention heads.
 
 **Linear Layer**:
 Defines a fully connected layer that maps the output of the self-attention layer to a single output value.
 
-## ```forward``` Method
+### ```forward``` Method:
 
 **Applying Positional Encoding**:
 Adds positional encoding to the input tensor x. 
