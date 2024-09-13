@@ -98,6 +98,7 @@ Applies the self-attention layer to the input tensor x.
 ### Summary:
 The ```SelfAttentionModel``` combines positional encoding and self-attention to process sequence data. It adds positional information to the input, applies multi-head self-attention to capture dependencies between different positions in the sequence, and then uses a linear layer to produce a single output value per sequence.
 
+## Dummy Data Generator
 ```python
 def create_dummy_data(batch_size, seq_len, d_model):
     '''Dummy Data Generator'''
@@ -106,7 +107,7 @@ def create_dummy_data(batch_size, seq_len, d_model):
     y = torch.randn(batch_size, 1)* n
     return X, y
 ```
-## Dummy Data Generator
+
 
 * Creates a dummy dataset with ```torch.randn```.
 * ```n``` is a factor to scale down the generated data for easier training,
@@ -117,6 +118,8 @@ d_model = 16 # Model dimension
 batch_size = 32 # Batch size
 n_heads = 4 # Number of heads for the multi-headed method
 ```
+## Training Model
+
 ```python
 # --- Model, loss function and optimizer initialization  ---
 model = SelfAttentionModel(seq_len=seq_len, d_model=d_model, n_heads=n_heads)
@@ -171,7 +174,6 @@ Epoch 180, Loss: 0.00011, Validation Loss: 0.00004
 Epoch 200, Loss: 0.00012, Validation Loss: 0.00016
 ```
 
-## Training Model
 
 * ```model``` creates an instance of the SelfAttentionModel with the specified parameters.
 * ```loss_index = nn.MSELoss()``` initializes the Mean Squared Error (MSE) loss function, which is used to compute the difference between the model's predictions and the true values.
